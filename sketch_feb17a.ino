@@ -1,7 +1,7 @@
-#include <FastLED.h>
+#include <FastLED.h> /// install the libray before running this code
 
-#define ledPin 2
-#define noOfLed 60
+#define ledPin 2    
+#define noOfLed 60  // No of leds  present in led strip
 
 CRGB led[noOfLed];
 
@@ -9,17 +9,18 @@ int noiseSignal;
 int noOfLedTotoggel;
 
 void setup() {
-  pinMode(A0, INPUT);
+  pinMode(A0, INPUT);  // A0 is connect to a output pin of analog mic  module
   Serial.begin(9600);
 }
 
 void loop() { 
-  FastLED.addLeds<WS2812, ledPin, GRB>(led, noOfLed);
+// this code will be repeated under this loop
+  FastLED.addLeds<WS2812, ledPin, GRB>(led, noOfLed); 
   ledFn();
 }
 
 void ledFn() {
-  noiseSignal = analogRead(A0);
+  noiseSignal = analogRead(A0); 
   Serial.println(noiseSignal);
 
   if (noiseSignal > 0 && noiseSignal <= 100)
